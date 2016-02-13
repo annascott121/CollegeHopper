@@ -1,0 +1,100 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.JFrame;
+
+public class MGraph {
+	private HashMap<Place, ArrayList<Road<Place>>> adjList;
+	private HashMap<Place, PlaceInfo> places;
+	private int numPlaces;
+	private int numRoads;
+
+	/**
+	 * Creates a graph.
+	 *
+	 */
+	public MGraph() {
+		this.places = new HashMap<Place, PlaceInfo>();
+		this.numPlaces = 0;
+		this.numRoads = 0;
+
+	}
+
+	public void addPlace(Place p) {
+		if (p == null) {
+			throw new IllegalArgumentException("Not a place!");
+		}
+		this.adjList.put(p, new ArrayList<Road<Place>>());
+		places.put(p, new PlaceInfo<Place>(p));
+
+	}
+
+	public void addRoad(Place start, Place dest, int t, int d) {
+		ArrayList<Road<Place>> roadsFromStart = adjList.get(start);
+		if (roadsFromStart == null) {
+			throw new IllegalArgumentException("This place is invalid.");
+		}
+		else {
+			//create add the Road to the corresponding start Place
+			Road<Place> newRoad = new Road<Place>(dest, t, d);
+			roadsFromStart.add(newRoad);
+		}
+			public boolean addEdge(T e1, T e2, int cost) {
+		if (!nodes.containsKey(e1) && !nodes.containsKey(e2)) return false;
+		nodes.get(e1).addEdge(e2, cost);
+	    return true;
+	}
+	}
+
+	public Road<Place> findRoad(Place start, Place dest) {
+		ArrayList<Road<Place>> roads = adjList.get(start);
+		if (roads == null) {
+			throw new IllegalArgumentException("This place is invalid.");
+		}
+		for(Road<Place> r : roads){
+			if(r.dest.equals(dest)){
+				return r;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Represents a place.
+	 *
+	 * @author roggeek. Created Feb 8, 2016.
+	 */
+	private class Place {
+		public String name;
+		public ArrayList<Road> roads;
+		public int rating;
+		//constructor
+		public Place(String name, ArrayList<Road> roads, int rating) {
+			this.name = name;
+			this.roads = roads;
+			this.rating = rating;
+		}
+		//add a Road beginning at this node
+		public addRoad(){
+			Node otherNode = nodes.get(e);
+			neighbors.add(new Edge(otherNode, cost));
+		}
+	}
+
+
+	private class Road<Place> {
+		public String name;
+		public Place dest;
+		public int timeCost;
+		public int distCost;
+
+		public Road(Place dest, int t, int d) {
+			this.dest = dest;
+			this.timeCost = t;
+			this.distCost = d;
+			this.name = start + "_" + dest;
+		}
+
+	}
+
+}
