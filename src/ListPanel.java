@@ -83,7 +83,7 @@ public class ListPanel extends ControlPanel {
 		
 		// ********** User Constraint Section **********
 		JFormattedTextField min = new JFormattedTextField();
-		// FIXME made a change
+		// FIXME made a change 
 		
 		
 		
